@@ -1,0 +1,44 @@
+# Unitree G1 walking policy (unitree_rl_gym, deploy/pre_train/g1/motion.pt).
+# Trained on the 12-DoF G1 (legs only, rigid upper body, rubber hands).
+# Values below must match its training config; do not tune them.
+policy: policies/g1_walk/motion.pt     # relative to this package's share dir
+
+leg_joints: [left_hip_pitch_joint, left_hip_roll_joint, left_hip_yaw_joint,
+             left_knee_joint, left_ankle_pitch_joint, left_ankle_roll_joint,
+             right_hip_pitch_joint, right_hip_roll_joint, right_hip_yaw_joint,
+             right_knee_joint, right_ankle_pitch_joint, right_ankle_roll_joint]
+
+control_dt: 0.02                       # policy runs at 50 Hz
+kps: [100, 100, 100, 150, 40, 40, 100, 100, 100, 150, 40, 40]
+kds: [2, 2, 2, 4, 2, 2, 2, 2, 2, 4, 2, 2]
+default_angles: [-0.1, 0.0, 0.0, 0.3, -0.2, 0.0,
+                 -0.1, 0.0, 0.0, 0.3, -0.2, 0.0]
+
+ang_vel_scale: 0.25
+dof_pos_scale: 1.0
+dof_vel_scale: 0.05
+action_scale: 0.25
+cmd_scale: [2.0, 2.0, 0.25]
+gait_period: 0.8                       # s, phase clock fed to the policy
+
+# Leg joint dynamics of the training model (applied to our model's legs).
+leg_armature: 0.01
+leg_damping: 0.001
+leg_frictionloss: 0.1
+
+# --- Our additions (tunable) ---------------------------------------------
+# Outer loops that correct the command sent to the policy, because our robot
+# (Dex3 hands) differs from the one it was trained on.
+heading_kp: 1.0                        # yaw-rate correction per rad of heading error
+speed_kp: 0.5                          # on low-passed body velocity error (vx, vy)
+speed_ki: 1.0
+speed_filter_tau: 0.8                  # s, ~one gait cycle
+speed_integral_limit: 0.4
+cmd_accel_limit: [0.5, 0.5, 1.0]       # max change rate of the user command (m/s^2, m/s^2, rad/s^2)
+policy_cmd_min: [-0.6, -0.4, -1.0]     # limits of the corrected command (vx, vy, wz)
+policy_cmd_max: [1.2, 0.4, 1.0]
+
+# TEMPORARY: scale Dex3 hand mass so the hands weigh about as much as the
+# rubber hands the policy was trained with (0.34 kg vs 1.39 kg). Set to 1.0
+# once the policy is retrained on the G1 + Dex3 model.
+hand_mass_scale: 0.25
