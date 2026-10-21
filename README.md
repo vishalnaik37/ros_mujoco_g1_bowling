@@ -16,6 +16,10 @@ bowls it at the stumps.
 | Run-up + delivery + release timing | ⬜ planned |
 | Walking/running policy retrained on G1 + Dex3 | ⬜ planned (needs GPU) |
 
+**New to this?** Start with the [Reading Guide](docs/reading_guide.md): the
+papers and books behind each part of the project, with a week-by-week plan
+tied to exercises in this repo.
+
 ## Packages
 
 | Package | Contents |
