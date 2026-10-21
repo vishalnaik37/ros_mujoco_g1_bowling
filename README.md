@@ -18,7 +18,8 @@ bowls it at the stumps.
 
 **New to this?** Start with the [Reading Guide](docs/reading_guide.md): the
 papers and books behind each part of the project, with a week-by-week plan
-tied to exercises in this repo.
+tied to exercises in this repo. The detailed step-by-step plan is in
+[Reading Plan (PDF)](docs/reading_plan.pdf).
 
 ## Packages
 
