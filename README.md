@@ -19,7 +19,9 @@ bowls it at the stumps.
 **New to this?** Start with the [Reading Guide](docs/reading_guide.md): the
 papers and books behind each part of the project, with a week-by-week plan
 tied to exercises in this repo. The detailed step-by-step plan is in
-[Reading Plan (PDF)](docs/reading_plan.pdf).
+[Reading Plan (PDF)](docs/reading_plan.pdf). To work through the project
+hands-on, follow the [Training Plan](docs/training_plan.md): eight weeks of
+daily tasks, each with a "done when" check.
 
 ## Packages
 
